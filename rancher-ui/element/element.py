@@ -3,6 +3,7 @@ __email__ = "elrarun@gmail.com"
 
 from selenium.webdriver.support.ui import WebDriverWait
 
+
 class BasePageElement(object):
 
     def __set__(self, obj, value):
