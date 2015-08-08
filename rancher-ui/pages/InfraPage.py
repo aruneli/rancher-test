@@ -26,7 +26,3 @@ class InfraPage(object):
          #   EC.text_to_be_present_in_element((By.CSS_SELECTOR, 'h2')))
         #WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element.)
 
-    def click_ec2_img(self):
-        element = self.driver.find_element(*InfraPageLocators.InfraPageLocators.EC2_IMG)
-        element.click()
-

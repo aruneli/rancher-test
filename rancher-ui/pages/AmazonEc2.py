@@ -1,5 +1,3 @@
-from selenium.webdriver import ActionChains
-
 __author__ = 'Arunkumar Eli'
 __email__ = "elrarun@gmail.com"
 

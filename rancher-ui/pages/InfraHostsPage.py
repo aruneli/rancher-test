@@ -2,6 +2,7 @@ __author__ = 'Arunkumar Eli'
 __email__ = "elrarun@gmail.com"
 
 from locators import InfraHostsLocators
+from locators import InfraPageLocators
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
@@ -22,6 +23,11 @@ class InfraHostsPage(object):
 
     def __init__(self, driver):
         self.driver = driver
+
+
+    def click_ec2_img(self):
+        element = self.driver.find_element(*InfraPageLocators.InfraPageLocators.EC2_IMG)
+        element.click()
 
     def get_host_status_text(self):
         xpath_loc = InfraHostsLocators.InfraHostsLocators.STATUS_LABEL_PREFIX + "1" + InfraHostsLocators.InfraHostsLocators.STATUS_LABEL_SUFFIX
@@ -50,8 +56,9 @@ class InfraHostsPage(object):
     def wait_for_first_host_active(self, value):
         xpath_loc = InfraHostsLocators.InfraHostsLocators.STATUS_LABEL_PREFIX + "1" + InfraHostsLocators.InfraHostsLocators.STATUS_LABEL_SUFFIX
         print xpath_loc
-        element = self.driver.find_element(xpath_loc)
-        element = WebDriverWait(self.driver, 10).until(ec.text_to_be_present_in_element_value(element, value))
+        by = (By.XPATH, xpath_loc)
+        element = self.driver.find_element(*by)
+        element = WebDriverWait(self.driver, 180).until(ec.text_to_be_present_in_element_value(element, value))
 
     # def wait_for_other_hosts_active(self, num_host, status):
     #     is_all_active = False
@@ -160,7 +167,7 @@ class InfraHostsPage(object):
         while is_no_host is not True:
             print "Calling _host_delete"
             self._host_delete()
-            time.sleep(1)
+            time.sleep(2)
             print "end of host_delete"
             is_no_host = self.is_no_host_text_found()
             print "Host status now: %s" % is_no_host
