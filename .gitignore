@@ -1,0 +1,8 @@
+**/.tox
+**/__pycache__
+*.py[co]
+*.swp
+**/.venv
+**/.idea
+**/.DS_Store
+**/.tox
